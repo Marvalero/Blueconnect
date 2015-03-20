@@ -11,7 +11,9 @@ Basic commands in git:
     git commit -m "What you have done"
     git push
 
-- Whe you want to do a merge request to master branch:  You must go to git clone https://github.com/Marvalero/Blueconnect and make a merge request or pull request with the master branch.
+- Whe you want to do a merge request to master branch: 
+   git merge origin/master
+  ** And you must wait until Marvalero has read the changes and confirm your request
 
 - When a merge request is accepted, the others have to do:
     git add .
