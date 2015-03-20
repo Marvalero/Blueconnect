@@ -9,6 +9,7 @@ Basic commands in git:
 - After tath, you could open the project with Android Studio and modify it. You could commit changes with:
     git add .
     git commit -m "What you have done"
+    git pull
     git push
 
 - Whe you want to do a merge request to master branch: 
@@ -21,7 +22,7 @@ Basic commands in git:
     git push
     git pull origin master
 
-
+- It's good to make a "git pull" sometimes :)
    
 
 
