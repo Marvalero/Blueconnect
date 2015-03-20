@@ -4,6 +4,8 @@ Basic commands in git:
 
 - After that, you must create a new brach que a name:
     git checkout -b namebranch
+    git push origin namebranch
+
 - After tath, you could open the project with Android Studio and modify it. You could commit changes with:
     git add .
     git commit -m "What you have done"
