@@ -1,0 +1,23 @@
+Basic commands in git:
+ - Clon the repository:
+    git clone https://github.com/Marvalero/Blueconnect
+
+- After that, you must create a new brach que a name:
+    git checkout -b namebranch
+- After tath, you could open the project with Android Studio and modify it. You could commit changes with:
+    git add .
+    git commit -m "What you have done"
+    git push
+
+- Whe you want to do a merge request to master branch:  You must go to git clone https://github.com/Marvalero/Blueconnect and make a merge request or pull request with the master branch.
+
+- When a merge request is accepted, the others have to do:
+    git add .
+    git commit -m "Aqui poneis un comentario que diga lo que habeis hecho"
+    git push
+    git pull origin master
+
+
+   
+
+
