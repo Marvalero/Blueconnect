@@ -5,7 +5,7 @@ We take as example the project: https://github.com/googlesamples/android-Bluetoo
 
 # Objectives
 
- - Connect both Devices
+ - Connect both devices
  - Send some orders from one device to another
 
 # TODO
