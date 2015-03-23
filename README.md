@@ -8,7 +8,7 @@ We take as example the project: https://github.com/googlesamples/android-Bluetoo
  - Connect both devices
  - Send some orders from one device to another
 
-# TODO
+# todo
  
  - GUI
  - BluetoothController Class
