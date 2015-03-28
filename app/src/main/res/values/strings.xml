@@ -1,6 +1,16 @@
-<resources>
-    <string name="app_name">Blueconnect</string>
+<?xml version="1.0" encoding="utf-8"?>
 
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
+
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+
+<string name="escaneando">Escaneando dispositivos...</string>
+<string name="selecciona_dispositivo">Selecciona un dispositivo para conectarte</string>
+<string name="ninguno_emparejado">No se han emparejado dispositivos</string>
+<string name="no_encontrados">No se han encontrado dispositivos</string>
+<string name="boton_escaneo">Busca dispositivos</string>
+<string name="titulo_dispositivos_emparejados">Dispositivos emparejados</string>
+<string name="titulo_nuevos_dispositivos">Título de nuevos dispositivos</string>
+
+
 </resources>

@@ -4,9 +4,21 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ViewAnimator;
+import android.support.v4.app.FragmentTransaction;
+
+import com.pendragon.blueconnect.activities.SampleActivityBase;
+import com.pendragon.blueconnect.logger.Log;
+import com.pendragon.blueconnect.logger.LogFragment;
+import com.pendragon.blueconnect.logger.LogWrapper;
+import com.pendragon.blueconnect.logger.MessageOnlyLogFilter;
+
+
 
 
 public class MainActivity extends ActionBarActivity {
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
