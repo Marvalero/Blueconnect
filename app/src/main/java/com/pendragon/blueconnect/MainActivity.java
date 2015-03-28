@@ -7,7 +7,7 @@ import android.view.MenuItem;
 import android.widget.ViewAnimator;
 import android.support.v4.app.FragmentTransaction;
 
-import com.pendragon.blueconnect.activities.SampleActivityBase;
+import com.pendragon.blueconnect.activities.ActividadBase;
 import com.pendragon.blueconnect.logger.Log;
 import com.pendragon.blueconnect.logger.LogFragment;
 import com.pendragon.blueconnect.logger.LogWrapper;
@@ -49,3 +49,4 @@ public class MainActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 }
+

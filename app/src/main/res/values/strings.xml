@@ -11,6 +11,17 @@
 <string name="boton_escaneo">Busca dispositivos</string>
 <string name="titulo_dispositivos_emparejados">Dispositivos emparejados</string>
 <string name="titulo_nuevos_dispositivos">Título de nuevos dispositivos</string>
+<string name="envia">Envia</string>
+<string name="no_conectado">No conectado.</string>
+<string name="titulo_conectado_a">Titulo del dispositivo al que estamos conectados</string>
+<string name="titulo_conectando">Titulo del dispositivo al que nos estamos conectando</string>
+<string name="titulo_no_conectado">Titulo del dispositivo al que no estamos conectados</string>
+<string name="bt_no_activado">Bluetooth no conectado</string>
+<string name="conexion_segura">Conexion segura</string>
+<string name="conexion_insegura">Conexion insegura</string>
+<string name="visible">Dispositivo visible</string>
+
+
 
 
 </resources>
