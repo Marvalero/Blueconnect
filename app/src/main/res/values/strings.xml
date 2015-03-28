@@ -3,4 +3,6 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="title_inicio">Iniciando...</string>
+    <string name="title_activity_home_screen">HomeScreen</string>
 </resources>
