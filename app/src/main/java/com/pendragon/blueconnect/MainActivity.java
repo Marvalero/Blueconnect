@@ -2,43 +2,42 @@ package com.pendragon.blueconnect;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
-import android.support.v7.app.ActionBarActivity;
+import android.content.res.Configuration;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.view.LayoutInflater;
+import android.support.v7.app.ActionBarActivity;
+import android.support.v4.app.ActionBarDrawerToggle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.support.v4.widget.DrawerLayout;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.pendragon.blueconnect.fragments.ArticleFragment;
+import com.pendragon.blueconnect.fragments.MainFragment;
 import com.pendragon.blueconnect.utils.DrawerItem;
 import com.pendragon.blueconnect.utils.DrawerListAdapter;
 
 import java.util.ArrayList;
-import java.util.Locale;
 
 public class MainActivity extends ActionBarActivity {
 
+    // Drawer menu
     private ListView     drawerList;
+    // Items on menu Navigation Drawer
     private String[] tagTitles;
+    // drawer_layout
     private DrawerLayout drawerLayout;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Setting the Navigation Drawer Menu
         tagTitles = getResources().getStringArray(R.array.menu_items);
-        // From activity main
         drawerList = (ListView) findViewById(R.id.drawer_list);
-        // Layout
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 
         // We set "drawer_list" to drawer_list_item layout
@@ -52,11 +51,16 @@ public class MainActivity extends ActionBarActivity {
         items.add(new DrawerItem(tagTitles[0],R.drawable.home));
         items.add(new DrawerItem(tagTitles[1],R.drawable.profile));
         items.add(new DrawerItem(tagTitles[2],R.drawable.search));
+        items.add(new DrawerItem(tagTitles[3],R.drawable.visible));
 
         // Set the items with an adapter
         drawerList.setAdapter(new DrawerListAdapter(this, items));
         // We handle the event
         drawerList.setOnItemClickListener(new DrawerItemClickListener());
+
+
+        // We set main fragment
+        selectItem(0);
 
     }
 
@@ -93,21 +97,38 @@ public class MainActivity extends ActionBarActivity {
     }
 
     private void selectItem(int position) {
-        // update the main content by replacing fragments
-        Fragment fragment = new ArticleFragment();
-        // We send item position
-        Bundle args = new Bundle();
-        args.putInt(ArticleFragment.ARG_ARTICLES_NUMBER, position);
-        fragment.setArguments(args);
 
-        // We change the content frame
-        FragmentManager fragmentManager = getFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.main_content, fragment).commit();
+        Fragment fragment;
+        if (position == 3) {
+            // Make bluetooth visible
+        }
+        else {
+            if (position == 0) {
+                // Main Fragment
+                fragment = new MainFragment();
+                // We send item position
+                Bundle args = new Bundle();
+                args.putInt(MainFragment.ARG_ARTICLES_NUMBER, position);
+                fragment.setArguments(args);
 
-        // update selected item and title, then close the drawer
-        drawerList.setItemChecked(position, true);
-        setTitle(tagTitles[position]);
-        drawerLayout.closeDrawer(drawerList);
+            } else {
+                // Chat History and Profile Settings
+                fragment = new ArticleFragment();
+                // We send item position
+                Bundle args = new Bundle();
+                args.putInt(ArticleFragment.ARG_ARTICLES_NUMBER, position);
+                fragment.setArguments(args);
+            }
+            // We change the content frame
+            FragmentManager fragmentManager = getFragmentManager();
+            fragmentManager.beginTransaction().replace(R.id.main_content, fragment).commit();
+
+            // update selected item and title, then close the drawer
+            drawerList.setItemChecked(position, true);
+            setTitle(tagTitles[position]);
+            drawerLayout.closeDrawer(drawerList);
+
+        }
     }
 
 }

@@ -8,16 +8,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/headlines"
+        android:text="@string/main_headline"
         android:id="@+id/headline"
         android:layout_centerHorizontal="true" />
 
-    <TextView
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/body"
-        android:id="@+id/body"
+        android:text="@string/bt_main"
+        android:id="@+id/button"
         android:layout_below="@+id/headline"
         android:layout_centerHorizontal="true" />
 

@@ -19,6 +19,7 @@ public class ArticleFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        // We call fragment_article layout
         View rootView = inflater.inflate(R.layout.fragment_article, container, false);
         int i = getArguments().getInt(ARG_ARTICLES_NUMBER);
         String article = getResources().getStringArray(R.array.menu_items)[i];
@@ -26,6 +27,21 @@ public class ArticleFragment extends Fragment {
         getActivity().setTitle(article);
         TextView headline = (TextView)rootView.findViewById(R.id.headline);
         headline.append(" "+article);
+
+
+        TextView body = (TextView)rootView.findViewById(R.id.body);
+
+        if (i==1) {
+            // It's Profile
+            body.append("Name: " + " Bluetooth method");
+
+        }
+        else
+        {
+            // It's History
+            body.append("Chats");
+
+        }
 
         return rootView;
     }
