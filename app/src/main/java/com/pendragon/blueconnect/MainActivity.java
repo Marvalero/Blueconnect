@@ -16,37 +16,79 @@ import com.pendragon.blueconnect.logger.MessageOnlyLogFilter;
 
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends ActividadBase {
 
+public static final String TAG = "ActividadPrincipal";
 
+    //Lo siguiente si el fragmento de los logs se mostrará o no:
+    private boolean MuestraLog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.actividad_principal);
+        if(savedInstanceState==null){
+            FragmentTransaction transaccion = getSupportFragmentManager().beginTransaction();
+            FragmentoChatBluetooth fragmento = new FragmentoChatBluetooth();
+            transaccion.replace(R.id.contenido_fragmento,fragmento);
+            transaccion.commit();
+        }
+
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_principal, menu);
         return true;
     }
 
     @Override
+    public boolean onPrepareOptionsMenu(Menu menu){
+        MenuItem desvaneceLog =menu.findItem(R.id.menu_desvanece_log);
+        desvaneceLog.setVisible(findViewById(R.id.salida_ejemplo)instanceof ViewAnimator);
+        desvaneceLog.setTitle(MuestraLog ? R.string.esconde_log : R.string.muestra_log);
+
+        return super.onPrepareOptionsMenu(menu);
+    }
+
+
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        switch (item.getItemId()) {
+            case R.id.menu_desvanece_log:
+                MuestraLog = !MuestraLog;
+                ViewAnimator salida = (ViewAnimator) findViewById(R.id.salida_ejemplo);
+                if (MuestraLog) {
+                    salida.setDisplayedChild(1);
+                } else {
+                    salida.setDisplayedChild(0);
+                }
+                supportInvalidateOptionsMenu();
+                return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
+ //Ahora creamos los objetivos para recibir los logs.
+
+@Override
+public void initializeLogging(){
+//usamos el log nativo de android
+    LogWrapper WrapperLog =new LogWrapper();
+    Log.setLogNode(WrapperLog);
+
+    //Filtramos  la salida excepto el mensaje de texto
+    MessageOnlyLogFilter FiltroMensaje = new MessageOnlyLogFilter();
+    WrapperLog.setNext(FiltroMensaje);
+
+    //Plasmamos el log con un textView
+    LogFragment FragmentoLog = (LogFragment) getSupportFragmentManager().findFragmentById(R.id.fragmento_log);
+    FiltroMensaje.setNext(FragmentoLog.getLogView());
+
+    Log.i(TAG,"Listo");
 }
+}
+
 

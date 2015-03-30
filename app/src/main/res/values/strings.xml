@@ -20,8 +20,8 @@
 <string name="conexion_segura">Conexion segura</string>
 <string name="conexion_insegura">Conexion insegura</string>
 <string name="visible">Dispositivo visible</string>
-
-
+<string name="esconde_log">Esconde el Log</string>
+<string name="muestra_log">Muestra el Log</string>
 
 
 </resources>
