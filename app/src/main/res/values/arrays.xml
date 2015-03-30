@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="menu_items">
-        <item>Profile</item>
-        <item>Settings</item>
+        <item>Main</item>
+        <item>Profile Settings</item>
+        <item>Chat History</item>
     </string-array>
 </resources>

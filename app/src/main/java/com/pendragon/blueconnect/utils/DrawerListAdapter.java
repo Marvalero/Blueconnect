@@ -34,6 +34,7 @@ public class DrawerListAdapter extends ArrayAdapter {
         ImageView icon = (ImageView) convertView.findViewById(R.id.icon);
         TextView name = (TextView) convertView.findViewById(R.id.name);
 
+        // We set image and text
         DrawerItem item = (DrawerItem) getItem(position);
         icon.setImageResource(item.getIconId());
         name.setText(item.getName());

@@ -4,10 +4,14 @@ android:id="@+id/drawer_layout"
 android:layout_width="match_parent"
 android:layout_height="match_parent">
 
+    <!-- Main Layout -->
     <FrameLayout android:id="@+id/main_content"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent" >
 
+    </FrameLayout>
+
+    <!-- DrawerList Menu -->
     <ListView android:id="@+id/drawer_list"
         android:layout_width="240dp"
         android:layout_height="match_parent"
