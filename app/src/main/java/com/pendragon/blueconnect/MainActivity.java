@@ -1,13 +1,13 @@
 package com.pendragon.blueconnect;
 
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ViewAnimator;
 import android.support.v4.app.FragmentTransaction;
 
-import com.pendragon.blueconnect.activities.ActividadBase;
+import com.pendragon.blueconnect.fragments.FragmentoChatBluetooth;
 import com.pendragon.blueconnect.logger.Log;
 import com.pendragon.blueconnect.logger.LogFragment;
 import com.pendragon.blueconnect.logger.LogWrapper;
@@ -16,7 +16,7 @@ import com.pendragon.blueconnect.logger.MessageOnlyLogFilter;
 
 
 
-public class MainActivity extends ActividadBase {
+public class MainActivity extends FragmentActivity {
 
 public static final String TAG = "ActividadPrincipal";
 
@@ -34,6 +34,12 @@ public static final String TAG = "ActividadPrincipal";
             transaccion.commit();
         }
 
+    }
+
+    @Override
+    protected  void onStart() {
+        super.onStart();
+        initializeLogging();
     }
 
 
@@ -73,7 +79,7 @@ public static final String TAG = "ActividadPrincipal";
     }
  //Ahora creamos los objetivos para recibir los logs.
 
-@Override
+
 public void initializeLogging(){
 //usamos el log nativo de android
     LogWrapper WrapperLog =new LogWrapper();

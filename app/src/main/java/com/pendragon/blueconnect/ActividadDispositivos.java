@@ -18,19 +18,12 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 
-//Guardamos los logs en:
-import com.pendragon.blueconnect.logger.Log;
 import  java.util.Set;
 /**
  * Created by carlos on 25/03/2015.
  */
 public class ActividadDispositivos extends Activity {
 
-    /**Hacemos una etiqueta para el log:
-     *
-     */
-
-    private static final String TAG = "ActividadListaDispositivos";
 
             //El valor de retorno del intent extra:
     public static String DIRECCIONES_DIPOSITIVOS_EXTRA = "Direccion_dispositivo";
@@ -122,7 +115,6 @@ private BluetoothAdapter miAdaptadorBluetooth;
      */
 
     private void doDiscovery(){
-        Log.d(TAG,"doDiscovery()");
         //Ponemos escaneando en el título:
         setProgressBarIndeterminateVisibility(true);
         setTitle(R.string.escaneando);
