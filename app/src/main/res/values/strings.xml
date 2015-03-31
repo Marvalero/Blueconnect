@@ -22,6 +22,9 @@
 <string name="visible">Dispositivo visible</string>
 <string name="esconde_log">Esconde el Log</string>
 <string name="muestra_log">Muestra el Log</string>
+<string name="hello_world">hello_world</string>
+<string name="action_settings">action_settings</string>
+<string name="app_name">app_name</string>
 
 
 </resources>
