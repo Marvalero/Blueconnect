@@ -1,8 +1,5 @@
 package com.pendragon.blueconnect.activities;
 
-/**
- * Created by carlos on 28/03/2015.
- */
 
 
 import android.os.Bundle;

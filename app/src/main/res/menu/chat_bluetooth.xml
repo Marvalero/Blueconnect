@@ -6,18 +6,16 @@
 
         <item
             android:id="@+id/escaneo_conexion_segura"
-            android:icon="@drawable/ic_action_device_access_bluetooth_searching"
-            android:showAsAction="ifRoom"
             android:title="@string/conexion_segura"/>
 
         <item
             android:id="@+id/escaneo_conexion_insegura"
-            android:showAsAction="never"
+
             android:title="@string/conexion_insegura"/>
 
         <item
             android:id="@+id/visible"
-            android:showAsAction="never"
+
             android:title="@string/visible"/>
 
 
