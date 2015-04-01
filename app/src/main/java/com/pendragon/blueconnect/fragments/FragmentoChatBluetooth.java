@@ -29,10 +29,10 @@ package com.pendragon.blueconnect.fragments;
         import android.widget.TextView;
         import android.widget.Toast;
 
-        import com.pendragon.blueconnect.ActividadDispositivos;
         import com.pendragon.blueconnect.bluetoothcontroller.Constants;
         import com.pendragon.blueconnect.R;
         import com.pendragon.blueconnect.bluetoothcontroller.ChatBluetoothService;
+        import com.pendragon.blueconnect.bluetoothcontroller.DevicesActivity;
         import com.pendragon.blueconnect.logger.Log;
 
 /**
@@ -314,13 +314,13 @@ public class FragmentoChatBluetooth extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode) {
             case REQUEST_CONNECT_DEVICE_SECURE:
-                // Cuando La actividadDispositivos devuelve un dispositivo al que conectarse.
+                // Cuando La DevicesActivity devuelve un dispositivo al que conectarse.
                 if (resultCode == Activity.RESULT_OK) {
                     conectaDispositivos(data, true);
                 }
                 break;
             case REQUEST_CONNECT_DEVICE_INSECURE:
-                // Cuando La actividadDispositivos devuelve un dispositivo al que conectarse.
+                // Cuando La DevicesActivity devuelve un dispositivo al que conectarse.
                 if (resultCode == Activity.RESULT_OK) {
                     conectaDispositivos(data, false);
                 }
@@ -348,7 +348,7 @@ public class FragmentoChatBluetooth extends Fragment {
      */
     private void conectaDispositivos(Intent dispositivos, boolean seguridad) {
         //Obtenemos la dirección MAC
-        String direccion = dispositivos.getExtras().getString(ActividadDispositivos.DIRECCIONES_DIPOSITIVOS_EXTRA);
+        String direccion = dispositivos.getExtras().getString(DevicesActivity.DIRECCIONES_DIPOSITIVOS_EXTRA);
         // Obtenemos el objeto BT
         BluetoothDevice dispositivo = AdaptadorBluetooth.getRemoteDevice(direccion);
         // Lanzamos para conectarnos a un dispositivo
@@ -364,14 +364,14 @@ public class FragmentoChatBluetooth extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.escaneo_conexion_segura: {
-                // Lanzamos ActividadDispositivos para ver los dispositivos y escanear
-                Intent serverIntent = new Intent(getActivity(), ActividadDispositivos.class);
+                // Lanzamos DevicesActivity para ver los dispositivos y escanear
+                Intent serverIntent = new Intent(getActivity(), DevicesActivity.class);
                 startActivityForResult(serverIntent, REQUEST_CONNECT_DEVICE_SECURE);
                 return true;
             }
             case R.id.escaneo_conexion_insegura: {
-                // Lanzamos ActividadDispositivos para ver los dispositivos y escanear
-                Intent serverIntent = new Intent(getActivity(), ActividadDispositivos.class);
+                // Lanzamos DevicesActivity para ver los dispositivos y escanear
+                Intent serverIntent = new Intent(getActivity(), DevicesActivity.class);
                 startActivityForResult(serverIntent, REQUEST_CONNECT_DEVICE_INSECURE);
                 return true;
             }
