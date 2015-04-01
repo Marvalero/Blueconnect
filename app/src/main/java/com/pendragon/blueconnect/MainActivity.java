@@ -2,6 +2,8 @@ package com.pendragon.blueconnect;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.bluetooth.BluetoothAdapter;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -14,6 +16,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.pendragon.blueconnect.bluetoothcontroller.DevicesActivity;
 import com.pendragon.blueconnect.fragments.ArticleFragment;
 import com.pendragon.blueconnect.fragments.MainFragment;
 import com.pendragon.blueconnect.utils.DrawerItem;
@@ -23,6 +26,12 @@ import java.util.ArrayList;
 
 public class MainActivity extends ActionBarActivity {
 
+
+    // Códigos de solicitud de intents
+    private static final int REQUEST_CONNECT_DEVICE_SECURE = 1;
+    private static final int REQUEST_CONNECT_DEVICE_INSECURE = 2;
+    private static final int REQUEST_ENABLE_BT = 3;
+
     // Drawer menu
     private ListView     drawerList;
     // Items on menu Navigation Drawer
@@ -30,10 +39,14 @@ public class MainActivity extends ActionBarActivity {
     // drawer_layout
     private DrawerLayout drawerLayout;
 
+    private BluetoothAdapter adaptadorBluetooth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        adaptadorBluetooth = BluetoothAdapter.getDefaultAdapter();
 
         // Setting the Navigation Drawer Menu
         tagTitles = getResources().getStringArray(R.array.menu_items);
@@ -68,20 +81,30 @@ public class MainActivity extends ActionBarActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.chat_bluetooth, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        switch (item.getItemId()) {
+            case R.id.escaneo_conexion_segura: {
+// Lanzamos ActividadDispositivos para ver los dispositivos y escanear
+                Intent serverIntent = new Intent(getApplicationContext(), DevicesActivity.class);
+                startActivityForResult(serverIntent, REQUEST_CONNECT_DEVICE_SECURE);
+                return true;
+            }
+            case R.id.escaneo_conexion_insegura: {
+// Lanzamos ActividadDispositivos para ver los dispositivos y escanear
+                Intent serverIntent = new Intent(getApplicationContext(), DevicesActivity.class);
+                startActivityForResult(serverIntent, REQUEST_CONNECT_DEVICE_INSECURE);
+                return true;
+            }
+            case R.id.visible: {
+// Ensure this device is discoverable by others
+                haceVisible();
+                return true;
+            }
         }
 
         return super.onOptionsItemSelected(item);
@@ -128,6 +151,15 @@ public class MainActivity extends ActionBarActivity {
             setTitle(tagTitles[position]);
             drawerLayout.closeDrawer(drawerList);
 
+        }
+    }
+
+    private void haceVisible() {
+        if (adaptadorBluetooth.getScanMode() !=
+                BluetoothAdapter.SCAN_MODE_CONNECTABLE_DISCOVERABLE) {
+            Intent visibleIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE);
+            visibleIntent.putExtra(BluetoothAdapter.EXTRA_DISCOVERABLE_DURATION, 300);
+            startActivity(visibleIntent);
         }
     }
 
