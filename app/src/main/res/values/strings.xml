@@ -31,9 +31,9 @@
     <string name="conexion_segura">Secure connection</string>
     <string name="conexion_insegura">insecure connection</string>
     <string name="visible">Visible device</string>
-    <string name="esconde_log">Hide log</string>
-    <string name="muestra_log">Show Log</string>
-    <string name="app_name">app_name</string>
+    <!-- <string name="esconde_log">Hide log</string> -->
+   <!-- <string name="muestra_log">Show Log</string>  -->
+    <string name="app_name">Chat Bluetooth</string>
 
 
 </resources>

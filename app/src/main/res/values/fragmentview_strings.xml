@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="muestra_log">Muestra Log</string>
+    <string name="esconde_log">Esconde Log</string>
+
+</resources>
