@@ -7,13 +7,11 @@ import android.view.MenuItem;
 import android.widget.ViewAnimator;
 import android.support.v4.app.FragmentTransaction;
 
-import com.pendragon.blueconnect.fragments.FragmentoChatBluetooth;
+import com.pendragon.blueconnect.fragments.ChatBluetoothFragment;
 import com.pendragon.blueconnect.logger.Log;
 import com.pendragon.blueconnect.logger.LogFragment;
 import com.pendragon.blueconnect.logger.LogWrapper;
 import com.pendragon.blueconnect.logger.MessageOnlyLogFilter;
-
-
 
 
 public class MainActivity extends FragmentActivity {
@@ -26,10 +24,10 @@ public static final String TAG = "ActividadPrincipal";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.actividad_principal);
+        setContentView(R.layout.activity_main);
         if(savedInstanceState==null){
             FragmentTransaction transaccion = getSupportFragmentManager().beginTransaction();
-            FragmentoChatBluetooth fragmento = new FragmentoChatBluetooth();
+            ChatBluetoothFragment fragmento = new ChatBluetoothFragment();
             transaccion.replace(R.id.contenido_fragmento,fragmento);
             transaccion.commit();
         }
