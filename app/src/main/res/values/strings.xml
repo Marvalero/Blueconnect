@@ -1,12 +1,11 @@
-<resources>
-    <string name="app_name">Blueconnect</string>
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="title_inicio">BlueConnect</string>
     <string name="title_activity_home_screen">HomeScreen</string>
 
-<!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="headlines">Headlines</string>
     <string name="search_devices">Search Devices</string>
@@ -15,4 +14,26 @@
     <string name="main_headline">Any Device</string>
     <string name="bt_main">Search devices</string>
     <string name="body">  </string>
+
+    <string name="escaneando">Searching devices...</string>
+    <string name="selecciona_dispositivo">Select a device</string>
+    <string name="ninguno_emparejado">No devices connected</string>
+    <string name="no_encontrados">No devices found</string>
+    <string name="boton_escaneo">Search devices</string>
+    <string name="titulo_dispositivos_emparejados">Devices connected</string>
+    <string name="titulo_nuevos_dispositivos">New devices</string>
+    <string name="envia">Send</string>
+    <string name="no_conectado">No connected.</string>
+    <string name="titulo_conectado_a">Name of the device we are connectes</string>
+    <string name="titulo_conectando">Name of the device we are trying to connect</string>
+    <string name="titulo_no_conectado">Name of the device we are not connect</string>
+    <string name="bt_no_activado">Bluetooth not connected</string>
+    <string name="conexion_segura">Secure connection</string>
+    <string name="conexion_insegura">insecure connection</string>
+    <string name="visible">Visible device</string>
+    <string name="esconde_log">Hide log</string>
+    <string name="muestra_log">Show Log</string>
+    <string name="app_name">app_name</string>
+
+
 </resources>
