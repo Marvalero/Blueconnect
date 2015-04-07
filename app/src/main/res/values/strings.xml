@@ -8,31 +8,31 @@
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="headlines">Headlines</string>
-    <string name="search_devices">Search Devices</string>
+    <string name="search_devices">Busca dispositivos</string>
     <string name="drawer_open">DrawerOpen</string>
     <string name="drawer_close">Drawer close</string>
     <string name="main_headline">Any Device</string>
-    <string name="bt_main">Search devices</string>
+    <string name="bt_main">Busca dispositivos</string>
     <string name="body">  </string>
 
-    <string name="escaneando">Searching devices...</string>
-    <string name="selecciona_dispositivo">Select a device</string>
-    <string name="ninguno_emparejado">No devices connected</string>
-    <string name="no_encontrados">No devices found</string>
-    <string name="boton_escaneo">Search devices</string>
-    <string name="titulo_dispositivos_emparejados">Devices connected</string>
-    <string name="titulo_nuevos_dispositivos">New devices</string>
+    <string name="escaneando">Buscando dispositivos</string>
+    <string name="selecciona_dispositivo">Selecciona un dispositivo</string>
+    <string name="ninguno_emparejado">No hay dispositivos emparejados</string>
+    <string name="no_encontrados">No se encontraron dispositivos</string>
+    <string name="boton_escaneo">Busca dispositivos</string>
+    <string name="titulo_dispositivos_emparejados">Dispositivos conectados</string>
+    <string name="titulo_nuevos_dispositivos">Nuevos dispositivos</string>
     <string name="envia">Send</string>
-    <string name="no_conectado">No connected.</string>
-    <string name="titulo_conectado_a">Name of the device we are connectes</string>
-    <string name="titulo_conectando">Name of the device we are trying to connect</string>
-    <string name="titulo_no_conectado">Name of the device we are not connect</string>
-    <string name="bt_no_activado">Bluetooth not connected</string>
-    <string name="conexion_segura">Secure connection</string>
-    <string name="conexion_insegura">insecure connection</string>
-    <string name="visible">Visible device</string>
-    <!-- <string name="esconde_log">Hide log</string> -->
-   <!-- <string name="muestra_log">Show Log</string>  -->
+    <string name="no_conectado">No conectado.</string>
+    <string name="titulo_conectado_a">Nombre de los dispositivos conectados</string>
+    <string name="titulo_conectando">Nombre de los dispositivos tratando de conectar</string>
+    <string name="titulo_no_conectado">Nombre de los dispositivos no conectados</string>
+    <string name="bt_no_activado">Bluetooth no conectado</string>
+    <string name="conexion_segura">Conexion segura</string>
+    <string name="conexion_insegura">Conexion insegura</string>
+    <string name="visible">Dispositivo visible</string>
+ <!--<string name="esconde_log">Oculta log</string> -->
+  <!--<string name="muestra_log">Muestra Log</string> -->
     <string name="app_name">Chat Bluetooth</string>
 
 

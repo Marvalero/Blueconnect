@@ -1,21 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 
     <menu xmlns:android="http://schemas.android.com/apk/res/android">
-//*Dejo esto con fallos hasta que se decida el diseño y tal
+<!--Dejo esto con fallos hasta que se decida el diseño y tal -->
 
 
         <item
             android:id="@+id/escaneo_conexion_segura"
+            android:icon="@drawable/visible"
+            android:showAsAction="ifRoom"
             android:title="@string/conexion_segura"/>
 
         <item
             android:id="@+id/escaneo_conexion_insegura"
-
+            android:showAsAction="never"
             android:title="@string/conexion_insegura"/>
 
         <item
             android:id="@+id/visible"
-
+            android:showAsAction="never"
             android:title="@string/visible"/>
 
 

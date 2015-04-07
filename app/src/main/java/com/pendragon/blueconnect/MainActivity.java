@@ -6,6 +6,7 @@ import android.bluetooth.BluetoothAdapter;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.view.Menu;
@@ -18,6 +19,7 @@ import android.widget.ListView;
 
 import com.pendragon.blueconnect.bluetoothcontroller.DevicesActivity;
 import com.pendragon.blueconnect.fragments.ArticleFragment;
+import com.pendragon.blueconnect.fragments.FragmentoChatBluetooth;
 import com.pendragon.blueconnect.fragments.MainFragment;
 import com.pendragon.blueconnect.utils.DrawerItem;
 import com.pendragon.blueconnect.utils.DrawerListAdapter;
@@ -45,6 +47,14 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+        if (savedInstanceState == null) {
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            FragmentoChatBluetooth fragment = new FragmentoChatBluetooth();
+            transaction.replace(R.id.sample_content_fragment, fragment);
+            transaction.commit();
+        }
 
         adaptadorBluetooth = BluetoothAdapter.getDefaultAdapter();
 
@@ -162,6 +172,11 @@ public class MainActivity extends ActionBarActivity {
             startActivity(visibleIntent);
         }
     }
+
+
+
+
+
 
 }
 
