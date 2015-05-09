@@ -1,5 +1,0 @@
-/home/libelula/git-project/Blueconnect/app/build/intermediates/classes/debug
-/home/libelula/git-project/Blueconnect/app/build/intermediates/pre-dexed/debug/support-annotations-21.0.3-ed1c735d0e93fe178767e90351e6ed2afb47dfe4.jar
-/home/libelula/git-project/Blueconnect/app/build/intermediates/pre-dexed/debug/internal_impl-21.0.3-bde857dd941358973c34fdcb452f389a42c9ed41.jar
-/home/libelula/git-project/Blueconnect/app/build/intermediates/pre-dexed/debug/classes-14c858620a403b3e571df6b8e7e499828bb4cf36.jar
-/home/libelula/git-project/Blueconnect/app/build/intermediates/pre-dexed/debug/classes-907123f16cb5e7567e975e4acbf6786b9a745c89.jar
