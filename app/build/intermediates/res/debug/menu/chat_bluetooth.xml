@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+    <menu xmlns:android="http://schemas.android.com/apk/res/android">
+//*Dejo esto con fallos hasta que se decida el diseño y tal
+
+
+        <item
+            android:id="@+id/escaneo_conexion_segura"
+            android:title="@string/conexion_segura"/>
+
+        <item
+            android:id="@+id/escaneo_conexion_insegura"
+
+            android:title="@string/conexion_insegura"/>
+
+        <item
+            android:id="@+id/visible"
+
+            android:title="@string/visible"/>
+
+
+
+
+</menu><!-- From: file:/home/libelula/git-project/Blueconnect/app/src/main/res/menu/chat_bluetooth.xml -->
