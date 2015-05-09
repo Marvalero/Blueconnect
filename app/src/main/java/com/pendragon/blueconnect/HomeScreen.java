@@ -31,6 +31,7 @@ public class HomeScreen extends Activity {
                     Intent mainActivity;
                     mainActivity = new Intent("com.pendragon.blueconnect");
                     startActivity(mainActivity);
+                    finish();
                 }
             }
         };
