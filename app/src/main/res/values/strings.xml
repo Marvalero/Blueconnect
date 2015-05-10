@@ -39,4 +39,6 @@
     <string name="insecure_connect">Connect a device - Insecure</string>
     <string name="discoverable">Make discoverable</string>
     <string name="title_inicio">Blueconnect</string>
+    <string name="headlines">Headlines</string>
+    <string name="body" />
 </resources>
