@@ -74,8 +74,7 @@ public class MainActivity extends Activity {
         ArrayList<DrawerItem> items = new ArrayList<DrawerItem>();
         items.add(new DrawerItem(tagTitles[0],R.drawable.home));
         items.add(new DrawerItem(tagTitles[1],R.drawable.profile));
-        items.add(new DrawerItem(tagTitles[2],R.drawable.search));
-        items.add(new DrawerItem(tagTitles[3],R.drawable.visible));
+        items.add(new DrawerItem(tagTitles[2],R.drawable.visible));
 
         // Set the items with an adapter
         drawerList.setAdapter(new DrawerListAdapter(this, items));
@@ -159,7 +158,7 @@ public class MainActivity extends Activity {
     private void selectItem(int position) {
 
         Fragment fragment;
-        if (position == 3) {
+        if (position == 2) {
             // Make bluetooth visible
             ensureDiscoverable();
         }

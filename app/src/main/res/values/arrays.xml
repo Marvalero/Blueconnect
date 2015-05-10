@@ -2,8 +2,7 @@
 <resources>
     <string-array name="menu_items">
         <item>Main</item>
-        <item>Profile Settings</item>
-        <item>Chat History</item>
+        <item>Information</item>
         <item>Make Visible</item>
     </string-array>
 </resources>
