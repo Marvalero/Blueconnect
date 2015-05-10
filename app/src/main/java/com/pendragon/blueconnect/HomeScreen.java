@@ -25,9 +25,9 @@ public class HomeScreen extends Activity {
                     //startActivity recibe por parametro un objeto del tipo Intent
                     //El Intent recibibe por parametro el NAME de la actividad que vamos a invocar
                     //Es el mismo que colocamos en el manifiesto
-                    Intent bluetoothChat;
-                    bluetoothChat = new Intent("com.pendragon.blueconnect");
-                    startActivity(bluetoothChat);
+                    Intent mainActivity;
+                    mainActivity = new Intent("com.pendragon.blueconnect");
+                    startActivity(mainActivity);
                     finish();
                 }
             }
