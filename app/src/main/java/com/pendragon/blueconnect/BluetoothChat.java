@@ -41,43 +41,43 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 /**
- * This is the main Activity that displays the current chat session.
+ * Main principal de los chat.
  */
 public class BluetoothChat extends Activity {
     // Debugging
     private static final String TAG = "BluetoothChat";
     private static final boolean D = true;
 
-    // Message types sent from the BluetoothChatService Handler
+    // tipos de mensajes del  Handler del chat
     public static final int MESSAGE_STATE_CHANGE = 1;
     public static final int MESSAGE_READ = 2;
     public static final int MESSAGE_WRITE = 3;
     public static final int MESSAGE_DEVICE_NAME = 4;
     public static final int MESSAGE_TOAST = 5;
 
-    // Key names received from the BluetoothChatService Handler
+    // nombres recibidos del servicio de chat BT Handler
     public static final String DEVICE_NAME = "device_name";
     public static final String TOAST = "toast";
 
-    // Intent request codes
+    // Codigos de los intent
     private static final int REQUEST_CONNECT_DEVICE_SECURE = 1;
     private static final int REQUEST_CONNECT_DEVICE_INSECURE = 2;
     private static final int REQUEST_ENABLE_BT = 3;
 
-    // Layout Views
+    // Layouts
     private ListView mConversationView;
     private EditText mOutEditText;
     private Button mSendButton;
 
-    // Name of the connected device
+    // nombre disp conectados
     private String mConnectedDeviceName = null;
-    // Array adapter for the conversation thread
+    // Array de adaptador para las conversaciones
     private ArrayAdapter<String> mConversationArrayAdapter;
-    // String buffer for outgoing messages
+    // buffer para mensajes salientes
     private StringBuffer mOutStringBuffer;
-    // Local Bluetooth adapter
+    // adaptador BT propio
     private BluetoothAdapter mBluetoothAdapter = null;
-    // Member object for the chat services
+    // Objeto del servicio de chat
     private BluetoothChatService mChatService = null;
 
 
@@ -86,13 +86,13 @@ public class BluetoothChat extends Activity {
         super.onCreate(savedInstanceState);
         if(D) Log.e(TAG, "+++ ON CREATE +++");
 
-        // Set up the window layout
+        // Le ponemos un layout
         setContentView(R.layout.main);
 
-        // Get local Bluetooth adapter
+        // obtenemos el adaptador propio
         mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
 
-        // If the adapter is null, then Bluetooth is not supported
+        // Si el adaptador es null, no tenemos BT en el movil
         if (mBluetoothAdapter == null) {
             Toast.makeText(this, "Bluetooth is not available", Toast.LENGTH_LONG).show();
             finish();
@@ -105,12 +105,12 @@ public class BluetoothChat extends Activity {
         super.onStart();
         if(D) Log.e(TAG, "++ ON START ++");
 
-        // If BT is not on, request that it be enabled.
-        // setupChat() will then be called during onActivityResult
+        // Pedimos activar BT si no está activo
+        // Si ya estaba activo, lanzamos el chat
         if (!mBluetoothAdapter.isEnabled()) {
             Intent enableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
             startActivityForResult(enableIntent, REQUEST_ENABLE_BT);
-        // Otherwise, setup the chat session
+
         } else {
             if (mChatService == null) setupChat();
         }
@@ -121,13 +121,12 @@ public class BluetoothChat extends Activity {
         super.onResume();
         if(D) Log.e(TAG, "+ ON RESUME +");
 
-        // Performing this check in onResume() covers the case in which BT was
-        // not enabled during onStart(), so we were paused to enable it...
-        // onResume() will be called when ACTION_REQUEST_ENABLE activity returns.
+        // Este estado se mantendrá mientras el BT no esté activo.
+
         if (mChatService != null) {
-            // Only if the state is STATE_NONE, do we know that we haven't started already
+            // Si el estado es STATE_NONE , de acuerdo a los códigos, sabremos que aun no esta BT activo
             if (mChatService.getState() == BluetoothChatService.STATE_NONE) {
-              // Start the Bluetooth chat services
+              // Esto lanza el servicio BT
               mChatService.start();
             }
         }
@@ -136,30 +135,31 @@ public class BluetoothChat extends Activity {
     private void setupChat() {
         Log.d(TAG, "setupChat()");
 
-        // Initialize the array adapter for the conversation thread
+        // Inicializa el array de adaptadores para la conversación.
         mConversationArrayAdapter = new ArrayAdapter<String>(this, R.layout.message);
         mConversationView = (ListView) findViewById(R.id.in);
         mConversationView.setAdapter(mConversationArrayAdapter);
 
-        // Initialize the compose field with a listener for the return key
+        // Inicializa el campo de texto editable.
         mOutEditText = (EditText) findViewById(R.id.edit_text_out);
         mOutEditText.setOnEditorActionListener(mWriteListener);
 
-        // Initialize the send button with a listener that for click events
+        // Hacemos lo mismo con el boton de envio.
         mSendButton = (Button) findViewById(R.id.button_send);
         mSendButton.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
-                // Send a message using content of the edit text widget
+                //Enviamos un mensaje usando el contenido del texto editable.
                 TextView view = (TextView) findViewById(R.id.edit_text_out);
                 String message = view.getText().toString();
                 sendMessage(message);
             }
         });
 
-        // Initialize the BluetoothChatService to perform bluetooth connections
+        // Iniciamos el  BluetoothChatService
         mChatService = new BluetoothChatService(this, mHandler);
 
-        // Initialize the buffer for outgoing messages
+        // Iniciamos el buffer de mensajes salientes, por si quisieramos guardar mensajes o para guardarlos
+        //en la cola.
         mOutStringBuffer = new StringBuffer("");
     }
 
@@ -178,7 +178,7 @@ public class BluetoothChat extends Activity {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        // Stop the Bluetooth chat services
+        // para el servicio de BT
         if (mChatService != null) mChatService.stop();
         if(D) Log.e(TAG, "--- ON DESTROY ---");
     }
@@ -194,33 +194,34 @@ public class BluetoothChat extends Activity {
     }
 
     /**
-     * Sends a message.
-     * @param message  A string of text to send.
+     * Manda un mensaje
+     * El parametro message es un string con el que mandamos el mensaje.
      */
     private void sendMessage(String message) {
-        // Check that we're actually connected before trying anything
+        // Primero asegurarnos que estamos conectados
         if (mChatService.getState() != BluetoothChatService.STATE_CONNECTED) {
             Toast.makeText(this, R.string.not_connected, Toast.LENGTH_SHORT).show();
             return;
         }
 
-        // Check that there's actually something to send
+        // Comprueba que hay algo que enviar
         if (message.length() > 0) {
-            // Get the message bytes and tell the BluetoothChatService to write
+            // obtenemos los bytes y escribimos con el servicio de chat
             byte[] send = message.getBytes();
             mChatService.write(send);
 
-            // Reset out string buffer to zero and clear the edit text field
+            // Limpiamos el campo de texto para volver a enviar
             mOutStringBuffer.setLength(0);
             mOutEditText.setText(mOutStringBuffer);
         }
     }
 
-    // The action listener for the EditText widget, to listen for the return key
+    //Listener del campo de texto editable.
     private TextView.OnEditorActionListener mWriteListener =
         new TextView.OnEditorActionListener() {
         public boolean onEditorAction(TextView view, int actionId, KeyEvent event) {
-            // If the action is a key-up event on the return key, send the message
+            // Si el código coincide con la actualizacion de una accion (ACTION UP)
+            //Mandamos el mensaje
             if (actionId == EditorInfo.IME_NULL && event.getAction() == KeyEvent.ACTION_UP) {
                 String message = view.getText().toString();
                 sendMessage(message);
@@ -240,7 +241,7 @@ public class BluetoothChat extends Activity {
         actionBar.setSubtitle(subTitle);
     }
 
-    // The Handler that gets information back from the BluetoothChatService
+    // Handler que devuelve la información del servicio de chat de BT
     private final Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -263,18 +264,18 @@ public class BluetoothChat extends Activity {
                 break;
             case MESSAGE_WRITE:
                 byte[] writeBuf = (byte[]) msg.obj;
-                // construct a string from the buffer
+                // Este es el caso opuesto al de antes, construimos el string a partir de bytes
                 String writeMessage = new String(writeBuf);
                 mConversationArrayAdapter.add("Me:  " + writeMessage);
                 break;
             case MESSAGE_READ:
                 byte[] readBuf = (byte[]) msg.obj;
-                // construct a string from the valid bytes in the buffer
+                // leemos el string del flujo de bytes.
                 String readMessage = new String(readBuf, 0, msg.arg1);
                 mConversationArrayAdapter.add(mConnectedDeviceName+":  " + readMessage);
                 break;
             case MESSAGE_DEVICE_NAME:
-                // save the connected device's name
+                // Aqui guardamos el nombre del dispositivo conectado para el historial
                 mConnectedDeviceName = msg.getData().getString(DEVICE_NAME);
                 Toast.makeText(getApplicationContext(), "Connected to "
                                + mConnectedDeviceName, Toast.LENGTH_SHORT).show();
@@ -291,24 +292,24 @@ public class BluetoothChat extends Activity {
         if(D) Log.d(TAG, "onActivityResult " + resultCode);
         switch (requestCode) {
         case REQUEST_CONNECT_DEVICE_SECURE:
-            // When DeviceListActivity returns with a device to connect
+            // Devuelve un dipositivo al que conectarse( OK)
             if (resultCode == Activity.RESULT_OK) {
                 connectDevice(data, true);
             }
             break;
         case REQUEST_CONNECT_DEVICE_INSECURE:
-            // When DeviceListActivity returns with a device to connect
+            // Devuelve un dispositivo al que conectarse(pero de forma insegura)
             if (resultCode == Activity.RESULT_OK) {
                 connectDevice(data, false);
             }
             break;
         case REQUEST_ENABLE_BT:
-            // When the request to enable Bluetooth returns
+            //Resultado de activar BT
             if (resultCode == Activity.RESULT_OK) {
-                // Bluetooth is now enabled, so set up a chat session
+                // Bt activo, iniciamos chat
                 setupChat();
             } else {
-                // User did not enable Bluetooth or an error occurred
+                // No se ha activado BT, o ha dado error.
                 Log.d(TAG, "BT not enabled");
                 Toast.makeText(this, R.string.bt_not_enabled_leaving, Toast.LENGTH_SHORT).show();
                 finish();
@@ -317,12 +318,12 @@ public class BluetoothChat extends Activity {
     }
 
     private void connectDevice(Intent data, boolean secure) {
-        // Get the device MAC address
+        // Obtenemos la MAC del dispositivo al que nos conectamos
         String address = data.getExtras()
             .getString(DeviceListActivity.EXTRA_DEVICE_ADDRESS);
-        // Get the BluetoothDevice object
+        // Obtenemos el objeto de  dispositivo BT.
         BluetoothDevice device = mBluetoothAdapter.getRemoteDevice(address);
-        // Attempt to connect to the device
+        // lanzamos para conectarnos al servicio de forma segura.
         mChatService.connect(device, secure);
     }
 
