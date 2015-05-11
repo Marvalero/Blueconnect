@@ -39,6 +39,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+import java.io.OutputStreamWriter;
 
 /**
  * Main principal de los chat.
@@ -277,6 +278,46 @@ public class BluetoothChat extends Activity {
             case MESSAGE_DEVICE_NAME:
                 // Aqui guardamos el nombre del dispositivo conectado para el historial
                 mConnectedDeviceName = msg.getData().getString(DEVICE_NAME);
+//Ahora vamos a escribir el nombre leido en un fichero de la memoria interna:
+                try
+                {
+                    OutputStreamWriter fichero=
+                            new OutputStreamWriter(
+                                    openFileOutput("nombreDevice.txt", MODE_PRIVATE));
+
+                    fichero.write(mConnectedDeviceName);
+                    fichero.close();
+                }
+                catch (Exception ex)
+                {
+                    Log.e("Ficheros", "Error al escribir fichero a memoria interna");
+                }
+
+
+                //El fichero se ha guardado en /data/data/"paquete.java"/files/nombreDevice.txt
+
+                //PAra leer de fichero:
+                /*
+
+                try
+                    {
+                        BufferedReader fin =
+                        new BufferedReader(
+                         new InputStreamReader(
+                         openFileInput("nombreDevice.txt")));
+                        //Aqui se almacena el nombre del dispositivo:
+                         String texto = fin.readLine();
+                         fin.close();
+                    }
+                    catch (Exception ex)
+                    {
+                        Log.e("Ficheros", "Error al leer fichero desde memoria interna");
+                    }
+
+
+                 */
+
+
                 Toast.makeText(getApplicationContext(), "Connected to "
                                + mConnectedDeviceName, Toast.LENGTH_SHORT).show();
                 break;
@@ -339,17 +380,17 @@ public class BluetoothChat extends Activity {
         Intent serverIntent = null;
         switch (item.getItemId()) {
         case R.id.secure_connect_scan:
-            // Launch the DeviceListActivity to see devices and do scan
+            //Lanza DeviceListActivity para ver los dispositivos y escanear.
             serverIntent = new Intent(this, DeviceListActivity.class);
             startActivityForResult(serverIntent, REQUEST_CONNECT_DEVICE_SECURE);
             return true;
         case R.id.insecure_connect_scan:
-            // Launch the DeviceListActivity to see devices and do scan
+            // Lo mismo pero de forma insegura
             serverIntent = new Intent(this, DeviceListActivity.class);
             startActivityForResult(serverIntent, REQUEST_CONNECT_DEVICE_INSECURE);
             return true;
         case R.id.discoverable:
-            // Ensure this device is discoverable by others
+            // hace nuestro dispositivo visible durante 300segundos (por defecto)
             ensureDiscoverable();
             return true;
         }

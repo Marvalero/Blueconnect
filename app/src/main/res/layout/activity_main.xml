@@ -8,7 +8,8 @@ android:layout_height="match_parent">
     <FrameLayout android:id="@+id/main_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#ffe8f8ff">
+        android:textStyle="bold"
+        android:background="#C2CACB">
 
     </FrameLayout>
 
@@ -20,6 +21,6 @@ android:layout_height="match_parent">
         android:choiceMode="singleChoice"
         android:divider="#A9A9A9"
         android:dividerHeight="0dp"
-        android:background="#64000000"/>
+        android:background="#8EE4F0"/>
 
 </android.support.v4.widget.DrawerLayout>
