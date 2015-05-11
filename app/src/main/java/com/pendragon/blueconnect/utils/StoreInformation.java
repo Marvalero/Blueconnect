@@ -1,4 +1,4 @@
-package com.pendragon.blueconnect;
+package com.pendragon.blueconnect.utils;
 
 /**
  * Created by JMPostigo on 23/3/15.

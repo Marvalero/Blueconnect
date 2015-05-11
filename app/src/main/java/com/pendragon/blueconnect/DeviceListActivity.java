@@ -36,6 +36,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Toast;
 
 /**
  * This Activity appears as a dialog. It lists any paired devices and
@@ -75,6 +76,8 @@ public class DeviceListActivity extends Activity {
                 v.setVisibility(View.GONE);
             }
         });
+
+
 
         // Initialize array adapters. One for already paired devices and
         // one for newly discovered devices
@@ -117,6 +120,14 @@ public class DeviceListActivity extends Activity {
         }
     }
 
+    // Go to MainActivity if we pulse back
+    @Override
+    public void onBackPressed() {
+        Intent myIntent = new Intent(getBaseContext(), MainActivity.class);
+        myIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(myIntent);
+    }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -153,7 +164,7 @@ public class DeviceListActivity extends Activity {
     }
 
     // The on-click listener for all devices in the ListViews
-    private OnItemClickListener mDeviceClickListener = new OnItemClickListener() {
+    protected OnItemClickListener mDeviceClickListener = new OnItemClickListener() {
         public void onItemClick(AdapterView<?> av, View v, int arg2, long arg3) {
             // Cancel discovery because it's costly and we're about to connect
             mBtAdapter.cancelDiscovery();
@@ -168,10 +179,20 @@ public class DeviceListActivity extends Activity {
 
             // Set result and finish this Activity
             setResult(Activity.RESULT_OK, intent);
+
+            openChatBluetooth();
+
             finish();
         }
     };
 
+
+    public void openChatBluetooth () {
+        Intent serverIntent = null;
+        // serverIntent = new Intent(this, BluetoothChat.class);
+        serverIntent = new Intent(this,BluetoothChat.class) ;
+        startActivityForResult(serverIntent, 1);
+    }
     // The BroadcastReceiver that listens for discovered devices and
     // changes the title when discovery is finished
     private final BroadcastReceiver mReceiver = new BroadcastReceiver() {

@@ -30,7 +30,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
@@ -39,6 +38,8 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.pendragon.blueconnect.utils.BluetoothChatService;
 
 /**
  * This is the main Activity that displays the current chat session.
@@ -98,6 +99,12 @@ public class BluetoothChat extends Activity {
             finish();
             return;
         }
+
+        // We open the DeviceListActivity for scan devices in secure mode
+        Intent serverIntent = null;
+        serverIntent = new Intent(this, DeviceListActivity.class);
+        startActivityForResult(serverIntent, REQUEST_CONNECT_DEVICE_SECURE);
+
     }
 
     @Override
@@ -113,6 +120,14 @@ public class BluetoothChat extends Activity {
         // Otherwise, setup the chat session
         } else {
             if (mChatService == null) setupChat();
+        }
+
+        if (mChatService != null) {
+            // Only if the state is STATE_NONE, do we know that we haven't started already
+            if (mChatService.getState() == BluetoothChatService.STATE_NONE) {
+                // Start the Bluetooth chat services
+                mChatService.start();
+            }
         }
     }
 
@@ -191,6 +206,14 @@ public class BluetoothChat extends Activity {
             discoverableIntent.putExtra(BluetoothAdapter.EXTRA_DISCOVERABLE_DURATION, 300);
             startActivity(discoverableIntent);
         }
+    }
+
+    // Go to MainActivity if we pulse back
+    @Override
+    public void onBackPressed() {
+        Intent myIntent = new Intent(getBaseContext(), MainActivity.class);
+        myIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(myIntent);
     }
 
     /**
