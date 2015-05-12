@@ -10,15 +10,16 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="@string/headlines"
         android:id="@+id/headline"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/abc_search_url_text_normal" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/body"
+        android:text="@string/lastconnection"
         android:id="@+id/body"
         android:layout_below="@+id/headline"
-        android:layout_centerHorizontal="true" />
+        android:textColor="@color/abc_input_method_navigation_guard" />
 
 </RelativeLayout>

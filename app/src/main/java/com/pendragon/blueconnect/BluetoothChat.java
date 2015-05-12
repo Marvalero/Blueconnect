@@ -355,4 +355,8 @@ public class BluetoothChat extends Activity {
         return false;
     }
 
+    public String getmConnectedDeviceName(){
+        return mConnectedDeviceName;
+    }
+
 }

@@ -26,6 +26,7 @@ import com.pendragon.blueconnect.utils.DrawerItem;
 import com.pendragon.blueconnect.utils.DrawerListAdapter;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class MainActivity extends Activity {
 
@@ -43,13 +44,15 @@ public class MainActivity extends Activity {
     private String[] tagTitles;
     // drawer_layout
     private DrawerLayout drawerLayout;
-
+    Date dateConnection;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+           //This is the last connection date
+        dateConnection=new Date();
 
         // Get local Bluetooth adapter
         mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
@@ -176,7 +179,8 @@ public class MainActivity extends Activity {
                 fragment = new ArticleFragment();
                 // We send item position
                 Bundle args = new Bundle();
-                args.putInt(ArticleFragment.ARG_ARTICLES_NUMBER, position);
+
+                args.putString(ArticleFragment.ARG_ARTICLES_DATE,dateConnection.toString());
                 fragment.setArguments(args);
             }
             // We change the content frame
