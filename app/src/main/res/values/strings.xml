@@ -42,8 +42,8 @@
 
     <!-- Fragment Article -->
     <string name="headlines">Information</string>
-    <string name="lastconnection">Last Connection:</string>
-    <string name="mac">MAC device connected:</string>
+    <string name="lastconnection">Date last connection:</string>
+    <string name="mac">MAC last device connected:</string>
     <string name="main_headline">main headline</string>
     <string name="bt_main">Scan Devices</string>
 
