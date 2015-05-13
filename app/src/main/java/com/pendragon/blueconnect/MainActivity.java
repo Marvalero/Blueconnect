@@ -172,18 +172,18 @@ public class MainActivity extends Activity {
                 fragment.setArguments(args);
 
             } else {
-                // Chat History and Profile Settings
+                // Pasamos al historial del chat y otra info.
                 fragment = new ArticleFragment();
-                // We send item position
+                // Mandamos la posicion del item
                 Bundle args = new Bundle();
                 args.putInt(ArticleFragment.ARG_ARTICLES_NUMBER, position);
                 fragment.setArguments(args);
             }
-            // We change the content frame
+            // cambiamos el contenido del fragment
             FragmentManager fragmentManager = getFragmentManager();
             fragmentManager.beginTransaction().replace(R.id.main_content, fragment).commit();
 
-            // update selected item and title, then close the drawer
+            // actualizamos el item seleccionado, el titulo y cerramos el drawer.
             drawerList.setItemChecked(position, true);
             setTitle(tagTitles[position]);
             drawerLayout.closeDrawer(drawerList);
