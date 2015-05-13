@@ -38,8 +38,9 @@ public class ArticleFragment extends Fragment {
         //Print the last connection date
             body.append("\n"+dateConnection.toString());
         //Print MAC of connected device
-
-
+        TextView mac= (TextView)rootView.findViewById(R.id.mac);
+        //TODO:Sacar la MAC del fichero
+           mac.append("\n"+"00:FF:88:EA");
 
         return rootView;
     }
