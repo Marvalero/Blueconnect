@@ -282,45 +282,10 @@ public class BluetoothChat extends Activity {
             case MESSAGE_DEVICE_NAME:
                 // save the connected device's name
                 mConnectedDeviceName = msg.getData().getString(DEVICE_NAME);
-                //Ahora vamos a escribir el nombre leido en un fichero de la memoria interna:
+
+                // save the device name
                 MySingleton.getInstance().setString(mConnectedDeviceName);
-               /* try
-                {
-                    OutputStreamWriter fichero=
-                            new OutputStreamWriter(
-                                    openFileOutput("nombreDevice.txt", MODE_PRIVATE));
 
-                    fichero.write(mConnectedDeviceName);
-                    fichero.close();
-                }
-                catch (Exception ex)
-                {
-                    Log.e("Ficheros", "Error al escribir fichero a memoria interna");
-                }
-
-*/
-                //El fichero se ha guardado en /data/data/"paquete.java"/files/nombreDevice.txt
-
-                //PAra leer de fichero:
-                /*
-
-                try
-                    {
-                        BufferedReader fin =
-                        new BufferedReader(
-                         new InputStreamReader(
-                         openFileInput("nombreDevice.txt")));
-                        //Aqui se almacena el nombre del dispositivo:
-                         String texto = fin.readLine();
-                         fin.close();
-                    }
-                    catch (Exception ex)
-                    {
-                        Log.e("Ficheros", "Error al leer fichero desde memoria interna");
-                    }
-
-
-                 */
 
                 Toast.makeText(getApplicationContext(), "Connected to "
                                + mConnectedDeviceName, Toast.LENGTH_SHORT).show();

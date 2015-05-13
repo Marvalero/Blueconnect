@@ -35,7 +35,7 @@ public class ArticleFragment extends Fragment {
 
         getActivity().setTitle(article);
         TextView headline = (TextView)rootView.findViewById(R.id.headline);
-        //headline.append(" "+article);
+       
 
         TextView body = (TextView)rootView.findViewById(R.id.body);
 
@@ -46,21 +46,8 @@ public class ArticleFragment extends Fragment {
         TextView mac= (TextView)rootView.findViewById(R.id.mac);
         //TODO:Sacar la MAC del fichero
            mac.append("\n"+ MySingleton.getInstance().getString());
-       /* try
-        {
-            BufferedReader fin =
-                    new BufferedReader(
-                            new InputStreamReader(new FileInputStream("nombreDevice.txt")));
-            //Aqui se almacena el nombre del dispositivo:
-            String texto = fin.readLine();
-           mac.append("texto: "+texto);
-            fin.close();
-        }
-        catch (Exception ex)
-        {
-            Log.e("Ficheros", "Error al leer fichero desde memoria interna");
-        }
-*/
+
+
         return rootView;
     }
 }
