@@ -41,11 +41,12 @@
     <string name="title_inicio">Blueconnect</string>
 
     <!-- Fragment Article -->
-    <string name="headlines">Information</string>
     <string name="lastconnection">Date last connection:</string>
     <string name="mac">MAC last device connected:</string>
-    <string name="main_headline">main headline</string>
-    <string name="bt_main">Scan Devices</string>
+    <string name="body"> </string>
+    <string name="main_headline"></string>
+    <string name="bt_main">Open Chat</string>
+    <string name="headlines"></string>
 
 
 </resources>

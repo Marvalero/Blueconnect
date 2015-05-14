@@ -26,6 +26,11 @@
       android:layout_width="wrap_content"
       android:layout_height="match_parent"
       android:layout_weight="1"
+      android:text="" android:textSize="30sp" android:textStyle="bold"
+      android:textColor="#000000" android:shadowColor="#8a6603"
+      android:shadowDx="3" android:shadowDy="2" android:shadowRadius="1.8"
+
+
     />
     <TextView android:id="@+id/title_right_text"
         android:layout_alignParentRight="true"
@@ -33,7 +38,7 @@
         android:singleLine="true"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:textColor="#fff"
+        android:textColor="#00ffff"
         android:layout_weight="1" 
     />
 </RelativeLayout>
