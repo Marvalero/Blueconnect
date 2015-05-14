@@ -106,11 +106,6 @@ public class BluetoothChat extends Activity {
         }
 
 
-        Intent serverIntent = null;
-        //Lanza DeviceListActivity para ver los dispositivos y escanear.
-        serverIntent = new Intent(this, DeviceListActivity.class);
-        startActivityForResult(serverIntent, REQUEST_CONNECT_DEVICE_SECURE);
-
     }
 
     @Override
@@ -154,10 +149,12 @@ public class BluetoothChat extends Activity {
         mConversationView = (ListView) findViewById(R.id.in);
         mConversationView.setAdapter(mConversationArrayAdapter);
 
+
         // Inicializa el campo de texto editable.
         mOutEditText = (EditText) findViewById(R.id.edit_text_out);
         mOutEditText.setOnEditorActionListener(mWriteListener);
 
+      
         // Hacemos lo mismo con el boton de envio.
         mSendButton = (Button) findViewById(R.id.button_send);
         mSendButton.setOnClickListener(new OnClickListener() {
@@ -391,8 +388,6 @@ public class BluetoothChat extends Activity {
         return false;
     }
 
-    public String getmConnectedDeviceName(){
-        return mConnectedDeviceName;
-    }
+
 
 }
