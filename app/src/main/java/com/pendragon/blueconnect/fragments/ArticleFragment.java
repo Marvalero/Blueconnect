@@ -35,7 +35,7 @@ public class ArticleFragment extends Fragment {
 
         getActivity().setTitle(article);
         TextView headline = (TextView)rootView.findViewById(R.id.headline);
-       
+
 
         TextView body = (TextView)rootView.findViewById(R.id.body);
 

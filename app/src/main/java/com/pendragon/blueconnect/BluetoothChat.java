@@ -191,6 +191,21 @@ public class BluetoothChat extends Activity {
         if(D) Log.e(TAG, "--- ON DESTROY ---");
     }
 
+
+    @Override
+    protected void onSaveInstanceState(Bundle bundle){
+        super.onSaveInstanceState(bundle);
+
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle bundle){
+        super.onRestoreInstanceState(bundle);
+
+    }
+
+
+
     private void ensureDiscoverable() {
         if(D) Log.d(TAG, "ensure discoverable");
         if (mBluetoothAdapter.getScanMode() !=
