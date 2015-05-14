@@ -184,6 +184,7 @@ public class MainActivity extends Activity {
             } else {
                 // Pasamos al historial del chat y otra info.
                 fragment = new ArticleFragment();
+
                 // Mandamos la posicion del item
                 Bundle args = new Bundle();
 

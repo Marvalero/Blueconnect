@@ -1,5 +1,8 @@
 package com.pendragon.blueconnect.utils;
 
+import android.widget.EditText;
+import android.widget.ListView;
+
 /**
  * Created by postigo on 13/5/15.
  */
@@ -11,15 +14,10 @@ public class MySingleton {
 
         public int mainFragment;
 
+        private ListView mConversationView;
 
-        public static void initInstance()
-        {
-            if (instance == null)
-            {
-                // Create the instance
-                instance = new MySingleton();
-            }
-        }
+        private EditText mOutEditText;
+
 
         //Crea instancia Singleton
         public static MySingleton getInstance()
@@ -58,4 +56,19 @@ public class MySingleton {
             return mainFragment;
         }
 
+        public ListView getConversationView(){
+            return mConversationView;
+        }
+
+        public void setConversationView(ListView mConversationView){
+            this.mConversationView=mConversationView;
+        }
+
+        public EditText getEditText(){
+            return mOutEditText;
+        }
+
+        public void setEditText(EditText edittext){
+            this.mOutEditText=edittext;
+        }
 }
