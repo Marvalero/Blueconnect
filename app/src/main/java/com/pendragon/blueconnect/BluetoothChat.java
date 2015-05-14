@@ -38,14 +38,10 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+import java.io.OutputStreamWriter;
 
 import com.pendragon.blueconnect.utils.BluetoothChatService;
 
-<<<<<<< HEAD
-=======
-import java.io.OutputStreamWriter;
-
->>>>>>> Carlos
 /**
  * Main principal de los chat.
  */

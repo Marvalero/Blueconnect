@@ -100,12 +100,8 @@ public class MainActivity extends Activity {
         }
     }
     public void onClickScanDevices(View view) {
-<<<<<<< HEAD
-        // Do something in response to button click
-=======
-        // Le asignamos al click
 
->>>>>>> Carlos
+        // Le asignamos al click
         Intent serverIntent = null;
         serverIntent = new Intent(this, BluetoothChat.class);
         startActivityForResult(serverIntent, REQUEST_CONNECT_DEVICE_SECURE);
