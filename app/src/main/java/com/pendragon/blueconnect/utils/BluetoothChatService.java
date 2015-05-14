@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.pendragon.blueconnect;
+package com.pendragon.blueconnect.utils;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -30,6 +30,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+
+import com.pendragon.blueconnect.BluetoothChat;
 
 /**
  * This class does all the work for setting up and managing Bluetooth
@@ -213,7 +215,7 @@ public class BluetoothChatService {
     /**
      * Write to the ConnectedThread in an unsynchronized manner
      * @param out The bytes to write
-     * @see com.pendragon.blueconnect.BluetoothChatService.ConnectedThread#write(byte[])
+     * @see BluetoothChatService.ConnectedThread#write(byte[])
      */
     public void write(byte[] out) {
         // Create temporary object
