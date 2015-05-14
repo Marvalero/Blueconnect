@@ -130,6 +130,17 @@ public class DeviceListActivity extends Activity {
         this.unregisterReceiver(mReceiver);
     }
 
+    /*
+     //////////////////     BEFORE       /////////////////
+    @Override
+    public void onBackPressed() {
+        Intent myIntent = new Intent(getBaseContext(), MainActivity.class);
+        myIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(myIntent);
+    }
+    */
+
+
     /**
      * Esto realiza el descubrimiento con el adaptador BT.
      */

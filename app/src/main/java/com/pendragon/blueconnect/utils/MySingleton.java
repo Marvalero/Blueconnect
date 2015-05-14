@@ -9,6 +9,18 @@ public class MySingleton {
 
         public String customVar;
 
+        public int mainFragment;
+
+
+        public static void initInstance()
+        {
+            if (instance == null)
+            {
+                // Create the instance
+                instance = new MySingleton();
+            }
+        }
+
         //Crea instancia Singleton
         public static MySingleton getInstance()
         {
@@ -20,9 +32,12 @@ public class MySingleton {
             // Return the instance
             return instance;
         }
+
         //Constructor del Singleton
         private MySingleton(){
+            this.mainFragment = 0;
         }
+
         //Guardamos el valor del nombre del dispositivo con el que hablamos
         public void setString(String ndevice)
         {
@@ -32,6 +47,15 @@ public class MySingleton {
         //Conseguimos el valor del nombre del dispositivo con el que hablamos
         public String getString(){
             return customVar;
+        }
+
+        public void setMainFragment(int option){
+            this.mainFragment = option;
+        }
+
+        public int getMainFragment(){
+
+            return mainFragment;
         }
 
 }

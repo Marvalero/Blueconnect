@@ -105,6 +105,12 @@ public class BluetoothChat extends Activity {
             return;
         }
 
+
+        Intent serverIntent = null;
+        //Lanza DeviceListActivity para ver los dispositivos y escanear.
+        serverIntent = new Intent(this, DeviceListActivity.class);
+        startActivityForResult(serverIntent, REQUEST_CONNECT_DEVICE_SECURE);
+
     }
 
     @Override
