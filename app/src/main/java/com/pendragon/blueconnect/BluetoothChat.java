@@ -30,7 +30,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
@@ -39,6 +38,8 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.pendragon.blueconnect.utils.BluetoothChatService;
 
 /**
  * This is the main Activity that displays the current chat session.
@@ -98,6 +99,12 @@ public class BluetoothChat extends Activity {
             finish();
             return;
         }
+
+        // Buscamos dispositivos de forma segura
+        Intent serverIntent = null;
+        serverIntent = new Intent(this, DeviceListActivity.class);
+        startActivityForResult(serverIntent, REQUEST_CONNECT_DEVICE_SECURE);
+
     }
 
     @Override
@@ -114,6 +121,7 @@ public class BluetoothChat extends Activity {
         } else {
             if (mChatService == null) setupChat();
         }
+
     }
 
     @Override
