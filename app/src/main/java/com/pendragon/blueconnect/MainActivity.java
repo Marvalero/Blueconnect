@@ -24,6 +24,7 @@ import com.pendragon.blueconnect.fragments.ArticleFragment;
 import com.pendragon.blueconnect.fragments.MainFragment;
 import com.pendragon.blueconnect.utils.DrawerItem;
 import com.pendragon.blueconnect.utils.DrawerListAdapter;
+import com.pendragon.blueconnect.utils.MySingleton;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -45,6 +46,7 @@ public class MainActivity extends Activity {
     // layout del drawer
     private DrawerLayout drawerLayout;
     Date dateConnection;
+    MySingleton informationSingleton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,18 +77,19 @@ public class MainActivity extends Activity {
 
         // Creamos la lista de items del drawer
         ArrayList<DrawerItem> items = new ArrayList<DrawerItem>();
-        items.add(new DrawerItem(tagTitles[0],R.drawable.home));
-        items.add(new DrawerItem(tagTitles[1],R.drawable.profile));
-        items.add(new DrawerItem(tagTitles[2],R.drawable.visible));
+        items.add(new DrawerItem(tagTitles[0], R.drawable.home));
+        items.add(new DrawerItem(tagTitles[1], R.drawable.profile));
+        items.add(new DrawerItem(tagTitles[2], R.drawable.visible));
 
         // Le ponemos un adaptador a los items
         drawerList.setAdapter(new DrawerListAdapter(this, items));
         // Y asignamos un handler
         drawerList.setOnItemClickListener(new DrawerItemClickListener());
 
-
+        // Vemos el fragmento actual
+        informationSingleton = MySingleton.getInstance();
         // Ahora establecemos el fragmento principal
-        selectItem(0);
+        selectItem(informationSingleton.getMainFragment());
 
     }
 
@@ -160,12 +163,16 @@ public class MainActivity extends Activity {
 
     private void selectItem(int position) {
 
+
         Fragment fragment;
         if (position == 2) {
             // Nos hacemos visibles
             ensureDiscoverable();
         }
         else {
+            // Guardamos la información del fragmento actual
+            informationSingleton.setMainFragment(position);
+
             if (position == 0) {
                 // fragmento main
                 fragment = new MainFragment();
@@ -177,10 +184,11 @@ public class MainActivity extends Activity {
             } else {
                 // Pasamos al historial del chat y otra info.
                 fragment = new ArticleFragment();
+
                 // Mandamos la posicion del item
                 Bundle args = new Bundle();
 
-                args.putString(ArticleFragment.ARG_ARTICLES_DATE,dateConnection.toString());
+                args.putString(ArticleFragment.ARG_ARTICLES_DATE, dateConnection.toString());
                 fragment.setArguments(args);
             }
             // cambiamos el contenido del fragment

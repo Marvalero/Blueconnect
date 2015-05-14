@@ -105,6 +105,7 @@ public class BluetoothChat extends Activity {
             return;
         }
 
+
     }
 
     @Override
@@ -148,10 +149,12 @@ public class BluetoothChat extends Activity {
         mConversationView = (ListView) findViewById(R.id.in);
         mConversationView.setAdapter(mConversationArrayAdapter);
 
+
         // Inicializa el campo de texto editable.
         mOutEditText = (EditText) findViewById(R.id.edit_text_out);
         mOutEditText.setOnEditorActionListener(mWriteListener);
 
+      
         // Hacemos lo mismo con el boton de envio.
         mSendButton = (Button) findViewById(R.id.button_send);
         mSendButton.setOnClickListener(new OnClickListener() {
@@ -190,6 +193,21 @@ public class BluetoothChat extends Activity {
         if (mChatService != null) mChatService.stop();
         if(D) Log.e(TAG, "--- ON DESTROY ---");
     }
+
+
+    @Override
+    protected void onSaveInstanceState(Bundle bundle){
+        super.onSaveInstanceState(bundle);
+
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle bundle){
+        super.onRestoreInstanceState(bundle);
+
+    }
+
+
 
     private void ensureDiscoverable() {
         if(D) Log.d(TAG, "ensure discoverable");
@@ -370,8 +388,6 @@ public class BluetoothChat extends Activity {
         return false;
     }
 
-    public String getmConnectedDeviceName(){
-        return mConnectedDeviceName;
-    }
+
 
 }
