@@ -42,6 +42,10 @@ import java.io.OutputStreamWriter;
 
 import com.pendragon.blueconnect.utils.BluetoothChatService;
 
+import com.pendragon.blueconnect.utils.MySingleton;
+
+import java.io.OutputStreamWriter;
+
 /**
  * Main principal de los chat.
  */
@@ -100,11 +104,6 @@ public class BluetoothChat extends Activity {
             finish();
             return;
         }
-
-        // Buscamos dispositivos de forma segura
-        Intent serverIntent = null;
-        serverIntent = new Intent(this, DeviceListActivity.class);
-        startActivityForResult(serverIntent, REQUEST_CONNECT_DEVICE_SECURE);
 
     }
 
@@ -286,44 +285,10 @@ public class BluetoothChat extends Activity {
             case MESSAGE_DEVICE_NAME:
                 // Aqui guardamos el nombre del dispositivo conectado para el historial
                 mConnectedDeviceName = msg.getData().getString(DEVICE_NAME);
-//Ahora vamos a escribir el nombre leido en un fichero de la memoria interna:
-                try
-                {
-                    OutputStreamWriter fichero=
-                            new OutputStreamWriter(
-                                    openFileOutput("nombreDevice.txt", MODE_PRIVATE));
 
-                    fichero.write(mConnectedDeviceName);
-                    fichero.close();
-                }
-                catch (Exception ex)
-                {
-                    Log.e("Ficheros", "Error al escribir fichero a memoria interna");
-                }
+                // save the device name
+                MySingleton.getInstance().setString(mConnectedDeviceName);
 
-
-                //El fichero se ha guardado en /data/data/"paquete.java"/files/nombreDevice.txt
-
-                //PAra leer de fichero:
-                /*
-
-                try
-                    {
-                        BufferedReader fin =
-                        new BufferedReader(
-                         new InputStreamReader(
-                         openFileInput("nombreDevice.txt")));
-                        //Aqui se almacena el nombre del dispositivo:
-                         String texto = fin.readLine();
-                         fin.close();
-                    }
-                    catch (Exception ex)
-                    {
-                        Log.e("Ficheros", "Error al leer fichero desde memoria interna");
-                    }
-
-
-                 */
 
 
                 Toast.makeText(getApplicationContext(), "Connected to "
@@ -403,6 +368,10 @@ public class BluetoothChat extends Activity {
             return true;
         }
         return false;
+    }
+
+    public String getmConnectedDeviceName(){
+        return mConnectedDeviceName;
     }
 
 }
