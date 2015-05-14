@@ -18,6 +18,9 @@ package com.pendragon.blueconnect;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.Intent;
@@ -39,6 +42,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 import java.io.OutputStreamWriter;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.TaskStackBuilder;
 
 import com.pendragon.blueconnect.utils.BluetoothChatService;
 
@@ -50,6 +55,9 @@ import java.io.OutputStreamWriter;
  * Main principal de los chat.
  */
 public class BluetoothChat extends Activity {
+
+    int notificationID;
+
     // Debugging
     private static final String TAG = "BluetoothChat";
     private static final boolean D = true;
@@ -91,6 +99,9 @@ public class BluetoothChat extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if(D) Log.e(TAG, "+++ ON CREATE +++");
+
+        //Para las notificaciones
+        notificationID = 1;
 
         // Le ponemos un layout
         setContentView(R.layout.main);
@@ -266,6 +277,14 @@ public class BluetoothChat extends Activity {
         final ActionBar actionBar = getActionBar();
         actionBar.setSubtitle(subTitle);
     }
+///****************************BLOQUE DE NOTIFICACIONES**********************************
+
+
+
+
+
+   ///*********************FIN BLOQUE NOTIFICACIONES *******************************
+
 
     // Handler que devuelve la información del servicio de chat de BT
     private final Handler mHandler = new Handler() {
@@ -299,12 +318,13 @@ public class BluetoothChat extends Activity {
                 // leemos el string del flujo de bytes.
                 String readMessage = new String(readBuf, 0, msg.arg1);
                 mConversationArrayAdapter.add(mConnectedDeviceName+":  " + readMessage);
+                displayNotification();
                 break;
             case MESSAGE_DEVICE_NAME:
                 // Aqui guardamos el nombre del dispositivo conectado para el historial
                 mConnectedDeviceName = msg.getData().getString(DEVICE_NAME);
 
-                // save the device name
+                // guardamos el nombre del dispositivo
                 MySingleton.getInstance().setString(mConnectedDeviceName);
 
 
@@ -388,6 +408,21 @@ public class BluetoothChat extends Activity {
         return false;
     }
 
+public void displayNotification()
+{
+Intent i= new Intent("notify_filter");
 
+i.putExtra("notificationID",notificationID);
+    PendingIntent pi = PendingIntent.getActivity(this,0,i,0);
+NotificationManager nm =(NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+    Notification notification =new Notification(R.drawable.app_icon,"Notificacion Bluetooth",System.currentTimeMillis());
+    CharSequence from = "Manager ";
+    CharSequence message="Nuevo mensaje recibido";
+    notification.setLatestEventInfo(this,from,message,pi);
+    notification.vibrate =new long[]{100,250,100,500};
+    nm.notify(notificationID,notification);
+
+
+}
 
 }
