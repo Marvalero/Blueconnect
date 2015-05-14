@@ -35,13 +35,13 @@ public class MainActivity extends Activity {
     private static final int REQUEST_CONNECT_DEVICE_INSECURE = 2;
     private static final int REQUEST_ENABLE_BT = 3;
 
-    // Local Bluetooth adapter
+    // adaptador de BT local
     private BluetoothAdapter mBluetoothAdapter = null;
-    // Drawer menu
+    // Lista de Drawer
     private ListView     drawerList;
-    // Items on menu Navigation Drawer
+    // Items del menu drawer
     private String[] tagTitles;
-    // drawer_layout
+    // layout del drawer
     private DrawerLayout drawerLayout;
 
 
@@ -51,7 +51,7 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 
 
-        // Get local Bluetooth adapter
+        // Obtiene el adaptador local BT
         mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         if (mBluetoothAdapter == null) {
             Toast.makeText(this, "Bluetooth is not available", Toast.LENGTH_LONG).show();
@@ -59,30 +59,30 @@ public class MainActivity extends Activity {
             return;
         }
 
-        // Setting the Navigation Drawer Menu
+        // Establece el menu drawer
         tagTitles = getResources().getStringArray(R.array.menu_items);
         drawerList = (ListView) findViewById(R.id.drawer_list);
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 
-        // We set "drawer_list" to drawer_list_item layout
+        // Asignamos el layout al listado de items del drawer
         drawerList.setAdapter(new ArrayAdapter<String>(
                 this,
                 R.layout.drawer_list_item,
                 getResources().getStringArray(R.array.menu_items)));
 
-        // Create a list of drawer items
+        // Creamos la lista de items del drawer
         ArrayList<DrawerItem> items = new ArrayList<DrawerItem>();
         items.add(new DrawerItem(tagTitles[0],R.drawable.home));
         items.add(new DrawerItem(tagTitles[1],R.drawable.profile));
         items.add(new DrawerItem(tagTitles[2],R.drawable.visible));
 
-        // Set the items with an adapter
+        // Le ponemos un adaptador a los items
         drawerList.setAdapter(new DrawerListAdapter(this, items));
-        // We handle the event
+        // Y asignamos un handler
         drawerList.setOnItemClickListener(new DrawerItemClickListener());
 
 
-        // We set main fragment
+        // Ahora establecemos el fragmento principal
         selectItem(0);
 
     }
@@ -91,16 +91,21 @@ public class MainActivity extends Activity {
     public void onStart() {
         super.onStart();
 
-        // If BT is not on, request that it be enabled.
-        // setupChat() will then be called during onActivityResult
+        // Si BT no esta activo, pedimos activarlo
+        //  Y llamamos a setupChat cuando se resuelva la accion/actividad
         if (!mBluetoothAdapter.isEnabled()) {
             Intent enableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
             startActivityForResult(enableIntent, REQUEST_ENABLE_BT);
-            // Otherwise, setup the chat session
+            // Si estaba activo, se lanza el chat
         }
     }
     public void onClickScanDevices(View view) {
+<<<<<<< HEAD
         // Do something in response to button click
+=======
+        // Le asignamos al click
+
+>>>>>>> Carlos
         Intent serverIntent = null;
         serverIntent = new Intent(this, BluetoothChat.class);
         startActivityForResult(serverIntent, REQUEST_CONNECT_DEVICE_SECURE);
@@ -118,17 +123,17 @@ public class MainActivity extends Activity {
         Intent serverIntent = null;
         switch (item.getItemId()) {
             case R.id.secure_connect_scan:
-                // Launch the DeviceListActivity to see devices and do scan
+                //Lanzamos DeviceListActivity para ver los dispositivos y escanear.
                 serverIntent = new Intent(this, DeviceListActivity.class);
                 startActivityForResult(serverIntent, REQUEST_CONNECT_DEVICE_SECURE);
                 return true;
             case R.id.insecure_connect_scan:
-                // Launch the DeviceListActivity to see devices and do scan
+                // Lo mismo pero de forma insegura
                 serverIntent = new Intent(this, DeviceListActivity.class);
                 startActivityForResult(serverIntent, REQUEST_CONNECT_DEVICE_INSECURE);
                 return true;
             case R.id.discoverable:
-                // Ensure this device is discoverable by others
+                // Nos hacemos visibles
                 ensureDiscoverable();
                 return true;
         }
@@ -145,11 +150,11 @@ public class MainActivity extends Activity {
         }
     }
 
-    /* The click listner for ListView in the navigation drawer */
+    /* Este es el listener del listview del drawer. */
     private class DrawerItemClickListener implements ListView.OnItemClickListener {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            // We call the method selectItem()
+            // llamamos al metodo selectItem()
             selectItem(position);
         }
     }
@@ -158,31 +163,31 @@ public class MainActivity extends Activity {
 
         Fragment fragment;
         if (position == 2) {
-            // Make bluetooth visible
+            // Nos hacemos visibles
             ensureDiscoverable();
         }
         else {
             if (position == 0) {
-                // Main Fragment
+                // fragmento main
                 fragment = new MainFragment();
-                // We send item position
+                // mandamos la posicion del item
                 Bundle args = new Bundle();
                 args.putInt(MainFragment.ARG_ARTICLES_NUMBER, position);
                 fragment.setArguments(args);
 
             } else {
-                // Chat History and Profile Settings
+                // Pasamos al historial del chat y otra info.
                 fragment = new ArticleFragment();
-                // We send item position
+                // Mandamos la posicion del item
                 Bundle args = new Bundle();
                 args.putInt(ArticleFragment.ARG_ARTICLES_NUMBER, position);
                 fragment.setArguments(args);
             }
-            // We change the content frame
+            // cambiamos el contenido del fragment
             FragmentManager fragmentManager = getFragmentManager();
             fragmentManager.beginTransaction().replace(R.id.main_content, fragment).commit();
 
-            // update selected item and title, then close the drawer
+            // actualizamos el item seleccionado, el titulo y cerramos el drawer.
             drawerList.setItemChecked(position, true);
             setTitle(tagTitles[position]);
             drawerLayout.closeDrawer(drawerList);
