@@ -105,11 +105,13 @@ public class MainActivity extends Activity {
 
         // Si BT no esta activo, pedimos activarlo
         //  Y llamamos a setupChat cuando se resuelva la accion/actividad
+        /*
         if (!mBluetoothAdapter.isEnabled()) {
             Intent enableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
             startActivityForResult(enableIntent, REQUEST_ENABLE_BT);
             // Si estaba activo, se lanza el chat
         }
+        */
     }
     public void onClickScanDevices(View view) {
 
