@@ -11,6 +11,7 @@ We take as example the project: https://github.com/googlesamples/android-Bluetoo
 # TODO
  
  - Memoria
+ - Presentacion
 
 
 
