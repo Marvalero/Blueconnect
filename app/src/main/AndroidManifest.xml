@@ -38,7 +38,19 @@
             android:configChanges="orientation|keyboardHidden" >
         </activity>
 
+        <activity
+            android:screenOrientation="portrait"
+            android:name=".utils.ViewNotification"
+            android:label="Details of notification" >
+            <intent-filter>
+                <action android:name="notify_filter" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        
+
     </application>
+    <uses-permission android:name="android.permission.VIBRATE"/>
     <!--
     <application
         android:allowBackup="true"
