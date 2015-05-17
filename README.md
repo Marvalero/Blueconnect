@@ -15,6 +15,7 @@ We take as example the project: https://github.com/googlesamples/android-Bluetoo
  - Practicar presentacion
  - Subir proyecto a la eV
  - Añadir imagenes de carlos a la memoria
+ - commit 100
 
 
 
