@@ -12,6 +12,7 @@ We take as example the project: https://github.com/googlesamples/android-Bluetoo
  
  - Memoria
  - Presentacion
+ - Practicar presentacion
 
 
 
