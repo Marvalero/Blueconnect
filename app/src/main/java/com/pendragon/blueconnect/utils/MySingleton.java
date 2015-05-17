@@ -17,6 +17,7 @@ public class MySingleton {
         private ListView mConversationView;
 
         private EditText mOutEditText;
+        private int initBluetooth;
 
 
         //Crea instancia Singleton
@@ -34,6 +35,7 @@ public class MySingleton {
         //Constructor del Singleton
         private MySingleton(){
             this.mainFragment = 0;
+            this.initBluetooth = 0;
         }
 
         //Guardamos el valor del nombre del dispositivo con el que hablamos
@@ -47,7 +49,15 @@ public class MySingleton {
             return customVar;
         }
 
-        public void setMainFragment(int option){
+    public int getInitBluetooth(){
+        return initBluetooth;
+    }
+
+    public void setInitBluetooth(int valor){
+        this.initBluetooth = valor;
+    }
+
+    public void setMainFragment(int option){
             this.mainFragment = option;
         }
 

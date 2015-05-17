@@ -94,6 +94,12 @@ public class MainActivity extends Activity {
     }
 
     @Override
+    public void onBackPressed() {
+        BluetoothChat.getInstance().finish();
+        finish();
+    }
+
+    @Override
     public void onStart() {
         super.onStart();
 
@@ -108,9 +114,12 @@ public class MainActivity extends Activity {
     public void onClickScanDevices(View view) {
 
         // Le asignamos al click
-        Intent serverIntent = null;
+        /* Intent serverIntent = null;
         serverIntent = new Intent(this, BluetoothChat.class);
         startActivityForResult(serverIntent, REQUEST_CONNECT_DEVICE_SECURE);
+        */
+        finish();
+
     }
 
     @Override

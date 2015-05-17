@@ -94,6 +94,7 @@ public class BluetoothChat extends Activity {
     // Objeto del servicio de chat
     private BluetoothChatService mChatService = null;
 
+    static BluetoothChat instance;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -116,7 +117,14 @@ public class BluetoothChat extends Activity {
             return;
         }
 
+        if(MySingleton.getInstance().getInitBluetooth() == 0) {
 
+            Intent serverIntent = null;
+            serverIntent = new Intent(this, MainActivity.class);
+            startActivityForResult(serverIntent, REQUEST_CONNECT_DEVICE_SECURE);
+            MySingleton.getInstance().setInitBluetooth(1);
+        }
+        instance=this;
     }
 
     @Override
@@ -198,11 +206,23 @@ public class BluetoothChat extends Activity {
     }
 
     @Override
+    public void onBackPressed() {
+        Intent serverIntent = null;
+        serverIntent = new Intent(this, MainActivity.class);
+        startActivityForResult(serverIntent, REQUEST_CONNECT_DEVICE_SECURE);
+    }
+
+    public static BluetoothChat getInstance(){
+        return instance;
+    }
+
+    @Override
     public void onDestroy() {
         super.onDestroy();
         // para el servicio de BT
         if (mChatService != null) mChatService.stop();
         if(D) Log.e(TAG, "--- ON DESTROY ---");
+        MySingleton.getInstance().setInitBluetooth(0);
     }
 
 
